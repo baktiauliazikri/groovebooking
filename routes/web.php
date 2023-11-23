@@ -32,7 +32,7 @@ Route::resource('review', PelangganReviewController::class);
 
 
 Route::group(['middleware' => [CekLevel::class . ':Pelanggan']], function () {
-    Route::get('booking', [PelangganBookingController::class, 'index'])->name('booking.index');
+    Route::resource('booking', PelangganBookingController::class);
     Route::resource('pelanggan-profile', PelangganProfileController::class);
 });
 

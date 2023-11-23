@@ -9,12 +9,20 @@
     <meta name="author" content="">
 
     <title>Groove Barberhouse</title>
-
+    @livewireStyles
     <!-- CSS FILES -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
 
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://unpkg.com/gijgo@1.9.14/js/gijgo.min.js" type="text/javascript"></script>
+    <link href="https://unpkg.com/gijgo@1.9.14/css/gijgo.min.css" rel="stylesheet" type="text/css" />
 
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <link
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&family=Sono:wght@200;300;400;500;700&display=swap"
         rel="stylesheet">
@@ -28,6 +36,8 @@
     <link rel="stylesheet" href="fe/css/owl.theme.default.min.css">
 
     <link href="fe/css/templatemo-pod-talk.css" rel="stylesheet">
+
+    <link href="fe/css/wizard.css" rel="stylesheet" id="bootstrap-css">
 
     <!--
 
@@ -61,7 +71,7 @@ https://templatemo.com/tm-584-pod-talk
                         </li>
 
                         <li class="nav-item @yield('menuBeranda')">
-                            <a class="nav-link" href="#section_4">Profile</a>
+                            <a class="nav-link" href="{{route('pelanggan-profile.index')}}">Profile</a>
                         </li>
                     </ul>
                 </div>
@@ -76,18 +86,20 @@ https://templatemo.com/tm-584-pod-talk
                     <div class="col-lg-12 col-12">
                         <div class="text-center mb-5 pb-2">
                             <div id="step1" class="card" style="display: block;">
-                                <div class="card-body">
-
-
+                                <div class="card-header">
+                                    {{-- <h1>Booking Your Service</h1> --}}
+                                    <div class="card-body">
+                                        {{--
+                                        <livewire:bookingpelanggan.create /> --}}
+                                        @livewire('bookingpelanggan.create')
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
         </section>
-
     </main>
 
 
@@ -97,39 +109,9 @@ https://templatemo.com/tm-584-pod-talk
     <script src="fe/js/bootstrap.bundle.min.js"></script>
     <script src="fe/js/owl.carousel.min.js"></script>
     <script src="fe/js/custom.js"></script>
+    @livewireScripts
     @include('sweetalert::alert')
-    <script>
-        function nextStep(step) {
-            // Sembunyikan langkah saat ini
-            document.getElementById('step' + (step - 1)).style.display = 'none';
-
-            // Tampilkan langkah berikutnya
-            document.getElementById('step' + step).style.display = 'block';
-
-            // Jika ini adalah langkah terakhir, tampilkan rincian pilihan
-            if (step === 4) {
-                displayResult();
-            }
-        }
-
-        function displayResult() {
-            // Ambil nilai formulir dari setiap langkah
-            var service = document.forms['formStep1']['service'].value;
-            var barberman = document.forms['formStep2']['barberman'].value;
-            var tanggal = document.forms['formStep3']['tanggal'].value;
-            var jam = document.forms['formStep3']['jam'].value;
-
-            // Tampilkan rincian pilihan
-            var resultDiv = document.getElementById('result');
-            resultDiv.innerHTML = `
-                <p>Service: ${service}</p>
-                <p>Barberman: ${barberman}</p>
-                <p>Tanggal: ${tanggal}</p>
-                <p>Jam: ${jam}</p>
-            `;
-        }
-
-    </script>
 </body>
+
 
 </html>

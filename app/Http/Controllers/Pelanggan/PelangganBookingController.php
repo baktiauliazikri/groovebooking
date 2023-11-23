@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Pelanggan;
 
 use App\Http\Controllers\Controller;
+use App\Models\Booking;
+use App\Models\Service;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -34,7 +37,17 @@ class PelangganBookingController extends Controller
      */
     public function create()
     {
-        //
+        {
+            $service = Service::get();
+            $barberman = User::where('level',  'Barberman')->latest()->get();
+            $pelanggan = User::where('level', 'Pelanggan',)->latest()->get();
+    
+            return view('pelanggan.booking.create',[
+                'service' => $service,
+                'barberman' => $barberman,
+                'pelanggan' => $pelanggan,
+            ]);
+        }
     }
 
     /**
@@ -45,7 +58,24 @@ class PelangganBookingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'nama_pelanggan' => 'required',
+            'service_id' => 'required',
+            'barberman_id' => 'required',
+            'tanggal' => 'required',
+            'jam' => 'required',
+            'status' => 'required',
+        ], [
+            'nama_pelanggan.required' => 'Nama Pelanggan tidak boleh kosong',
+            'service_id.required' => 'Service',
+            'barberman_id.required' => 'Gambar Service tidak boleh kosong',
+            'tanggal.required' => 'Deskripsi Service tidak boleh kosong',
+            'jam.required' => 'Harga Service tidak boleh kosong',
+            'status.required' => 'Harga Service tidak boleh kosong',
+        ]);
+        Booking::create($validated);
+
+        return redirect('/booking')->with('success', 'Data berhasil di tambahkan!');
     }
 
     /**

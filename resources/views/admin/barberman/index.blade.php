@@ -31,7 +31,7 @@
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $data->name }}</td>
-                            <td><img src="{{ asset('storage/foto_profile/' .$data->foto_profile) }}" alt="gambar" class="img-fluid"
+                            <td><img src="{{ asset('storage/foto_profile/barberman/' .$data->foto_profile) }}" alt="gambar" class="img-fluid"
                                 width="80"></td>
                             <td>{{ $data->email }}</td>
                             <td>{{ $data->phone }}</td>
@@ -42,7 +42,7 @@
                                 <a href="{{ route('data-barberman.edit', $data->id) }}" class="btn btn-sm btn-warning">
                                     <i class="fas fa-pen"></i>
                                 </a>
-                                <form action="{{ route('data-barberman.destroy', $data->id) }}" method="POST">
+                                <form action="{{ route('data-barberman.destroy', $data->id) }}" class="d-inline" method="POST">
                                     @method('DELETE')
                                     @csrf
                                     <button type="submit" class="btn btn-danger btn-sm my-2"

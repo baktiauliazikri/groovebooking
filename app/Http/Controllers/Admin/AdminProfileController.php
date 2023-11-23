@@ -97,6 +97,8 @@ class AdminProfileController extends Controller
             $validated['foto_profile'] = str_replace('public/', '', $path);
         }
 
+        $validated['password'] = bcrypt($request->input('password'));
+
         // Update data user
         $user = User::findOrFail($id);
         $user->update($validated);

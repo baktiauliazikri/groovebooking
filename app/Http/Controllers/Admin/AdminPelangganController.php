@@ -57,14 +57,14 @@ class AdminPelangganController extends Controller
             $file = $request->file('foto_profile');
             $fileName = hash('sha256', $file->getClientOriginalName()) . '.' . $file->getClientOriginalExtension();
 
-            $path = $file->storeAs('public/foto_profile', $fileName);
+            $path = $file->storeAs('public/foto_profile/pelanggan', $fileName);
             $validated['foto_profile'] = str_replace('public/', '', $path);
         }
 
         // Hash password menggunakan bcrypt sebelum menyimpan ke dalam basis data
         $validated['foto_profile'] = $fileName;
         $validated['password'] = bcrypt($request->input('password'));
-        $validated['level'] = 'pelanggan';
+        $validated['level'] = 'Pelanggan';
 
         // Simpan user baru ke dalam database
         User::create($validated);

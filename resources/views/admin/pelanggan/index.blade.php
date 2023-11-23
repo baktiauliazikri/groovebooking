@@ -31,7 +31,7 @@
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $data->name }}</td>
-                            <td><img src="{{ asset('storage/foto_profile/' .$data->foto_profile) }}" alt="gambar" class="img-fluid"
+                            <td><img src="{{ asset('storage/foto_profile/pelanggan/' .$data->foto_profile) }}" alt="gambar" class="img-fluid"
                                 width="80"></td>
                             <td>{{ $data->email }}</td>
                             <td>{{ $data->phone }}</td>
