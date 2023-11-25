@@ -1,4 +1,4 @@
-@extends('pelanggan.layout.master')
+@extends('pelanggan.layout.app')
 
 @section('menuProfile', 'active')
 

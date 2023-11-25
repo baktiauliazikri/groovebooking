@@ -83,6 +83,7 @@ https://templatemo.com/tm-584-pod-talk
                     <div class="ms-4">
                         @guest
                         <a href="/login" class="btn custom-btn custom-border-btn smoothscroll">Sign In</a>
+                        <a href="/register" class="btn custom-btn custom-border-btn smoothscroll">Sign Up</a>
                         @endguest
 
                         @auth

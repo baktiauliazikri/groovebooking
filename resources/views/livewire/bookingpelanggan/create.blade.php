@@ -8,11 +8,8 @@
     <div class="row setup-content {{ $currentStep != 1 ? 'displayNone' : '' }}" id="step-1">
         <div class="col-xs-12">
             <div class="col-md-12">
-                <h3> Choose your service</h3>
+                <h3>Choose your service</h3>
                 <div class="form-group">
-                    {{-- <label for="service">Service:</label> --}}
-                    {{-- @if($services)
-                    @foreach ($services as $data) --}}
                     <div class="d-flex justify-content-center flex-wrap">
                         @foreach ($services as $data)
                         <div class="mx-2" style="width: 16rem; border: none;">
@@ -30,16 +27,11 @@
                         </div>
                         @endforeach
                     </div>
-
-                    {{--
-                    @endforeach
-                    @endif --}}
-
                 </div>
-                <button class="btn btn-primary nextBtn btn-sm btn-lg float-end" wire:click="firstStepSubmit" type="button">
+                <button class="btn btn-primary nextBtn btn-sm btn-lg float-end" wire:click="firstStepSubmit"
+                    type="button">
                     Next
                 </button>
-
             </div>
         </div>
     </div>
@@ -47,9 +39,8 @@
     <div class="row setup-content {{ $currentStep != 2 ? 'displayNone' : '' }}" id="step-2">
         <div class="col-xs-12">
             <div class="col-md-12">
-                <h3> SChoose your Barberman</h3>
+                <h3>Choose your Barberman</h3>
                 <div class="form-group">
-                    {{-- <label>Barberman:</label> --}}
                     @if($barbermen)
                     @foreach($barbermen as $data)
                     <div class="d-flex flex-wrap mx-auto">
@@ -83,26 +74,41 @@
     <div class="row setup-content {{ $currentStep != 3 ? 'displayNone' : '' }}" id="step-3">
         <div class="col-xs-12">
             <div class="col-md-12">
-                <h3> Step 3</h3>
-                <div class="form-group">
-                    {{-- <label for="tanggal">Tanggal:</label> --}}
-                    <input type="date" name="tanggal" wire:model='selectedTanggal'
-                        class="form-control @error('tanggal') is-invalid @enderror" name="selectedTanggal" value="{{ @old('tanggal') }}"
-                        min="{{ date('Y-m-d')}}">
-                    @error('tanggal')
-                    <div class="invalid-feedback">
-                        {{ $message }}
+                <h3>Pilih Tanggal</h3>
+                <div class="row">
+                    <div class="form-group col-6">
+                        <div id="calendar" style="width: 100%"></div>
+                        <input type="date" name="selectedTanggal" wire:model="selectedTanggal"
+                            class="form-control @error('selectedTanggal') is-invalid @enderror"
+                            min="{{ date('Y-m-d') }}">
+                        @error('selectedTanggal')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
                     </div>
-                    @enderror
-                    {{-- <input type="date" wire:model="selectedTanggal" class="form-control" name="selectedTanggal" />
-                    @error('tanggal') <span class="error">{{ $message }}</span> @enderror --}}
-                </div>
-                <div class="form-group">
-                    {{-- <label for="jam">Jam:</label> --}}
-                    <input type="time" wire:model="selectedJam" class="form-control" name="selectedJam" />
-                    @error('jam') <span class="error">{{ $message }}</span> @enderror
-                </div>
 
+                    <div class="col-md-6">
+                        @error('jam')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
+
+                        @php
+                        $availableSlots = $this->getAvailableSlots();
+                        @endphp
+
+                        @foreach ($availableSlots as $slot)
+                        <input type="radio" class="btn-check" wire:model="selectedJam" name="selectedJam"
+                            id="btn-check-outlined-{{ $slot }}" value="{{ $slot }}.00" {{ in_array($slot,
+                            $this->selectedSlots) ? 'disabled' : '' }}>
+                        <label class="btn btn-outline-primary" for="btn-check-outlined-{{ $slot }}">{{ $slot
+                            }}.00</label>
+                        @endforeach
+                    </div>
+
+                </div>
                 <button class="btn btn-danger nextBtn btn-lg pull-right" type="button"
                     wire:click="back(2)">Back</button>
                 <button class="btn btn-primary nextBtn btn-lg pull-right" type="button"
@@ -110,6 +116,8 @@
             </div>
         </div>
     </div>
+
+
     <div class="row setup-content {{ $currentStep != 4 ? 'displayNone' : '' }}" id="step-4">
         <div class="col-xs-12">
             <div class="col-md-12">
@@ -154,8 +162,4 @@
             </div>
         </div>
     </div>
-
-
-
-
 </div>

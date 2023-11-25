@@ -35,17 +35,44 @@
                             <td>{{ $data->service -> nama_service }}</td>
                             <td>{{ $data->tanggal }}</td>
                             <td>{{ $data->jam }}</td>
-                            <td>{{ $data->status }}</td>
                             <td>
-                                <a href="{{ route('data-booking.edit', $data->id) }}" class="btn btn-sm btn-warning">
+                                @if ($data->status == 'Selesai')
+                                <span class="badge badge-success">
+                                    {{ $data->status }}
+                                </span>
+                                @else
+                                <span class="badge badge-warning">
+                                    {{ $data->status }}
+                                </span>
+                                @endif
+                            </td>
+                            <td>
+                                {{-- <a href="{{ route('data-booking.edit', $data->id) }}"
+                                    class="btn btn-sm btn-warning">
                                     <i class="fas fa-pen"></i>
-                                </a>
-                                <form action="{{ route('data-booking.destroy', $data->id) }}" class="d-inline" method="POST">
+                                </a> --}}
+                                @if ($data->status_orders == 'Selesai')
+                                @else
+                                <form action="{{ route('data-booking.update', $data->id) }}" method="POST"
+                                    class="d-inline">
+                                    @method('PUT')
+                                    @csrf
+                                    <button type="submit" class="btn btn-sm btn-success mt-2"
+                                        onclick="return confirm('Anda yakin untuk selesaikan pesan ini ?')">
+                                        <i class="fas fa-check"></i>
+                                        Selesai
+                                    </button>
+                                </form>
+
+                                @endif
+                                <form action="{{ route('data-booking.destroy', $data->id) }}" 
+                                    method="POST">
                                     @method('DELETE')
                                     @csrf
                                     <button type="submit" class="btn btn-danger btn-sm my-2"
                                         onclick="return confirm('Anda yakin menghapus data ini?')">
                                         <i class="fas fa-trash-alt"></i>
+                                        Hapus
                                     </button>
                                 </form>
                             </td>

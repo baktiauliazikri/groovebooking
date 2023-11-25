@@ -8,6 +8,7 @@ use App\Http\Controllers\Pelanggan\PelangganLandingController;
 use App\Http\Controllers\Pelanggan\PelangganBookingController;
 use App\Http\Controllers\Pelanggan\PelangganReviewController;
 use App\Http\Controllers\Pelanggan\PelangganProfileController;
+use App\Http\Controllers\Pelanggan\PelangganRiwayatController;
 use App\Http\Controllers\Admin\AdminServiceController;
 use App\Http\Controllers\Admin\AdminReviewController;
 use App\Http\Controllers\Admin\AdminProfileController;
@@ -33,14 +34,15 @@ Route::resource('review', PelangganReviewController::class);
 
 Route::group(['middleware' => [CekLevel::class . ':Pelanggan']], function () {
     Route::resource('booking', PelangganBookingController::class);
+    Route::resource('my-booking', PelangganRiwayatController::class);
     Route::resource('pelanggan-profile', PelangganProfileController::class);
 });
 
-// Login
+// Auth
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
+Route::get('/register', [LoginController::class, 'showRegistrationForm'])->name('register')->middleware('guest');
 Route::post('/login-action', [LoginController::class, 'authenticate']);
-
-//Logout
+Route::post('/register-action', [LoginController::class, 'register']);
 Route::get('/logout-action', [LoginController::class, 'logout']);
 
 
@@ -58,5 +60,6 @@ Route::group(['middleware' => ['auth']], function () {
     });
 
     Route::group(['middleware' => [CekLevel::class . ':Barberman']], function () {
+        
     });
 });

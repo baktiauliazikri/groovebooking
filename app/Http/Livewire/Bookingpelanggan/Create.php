@@ -11,12 +11,12 @@ use Illuminate\Support\Facades\Auth;
 class Create extends Component
 {
 
-    public $currentStep = 1;
-    public $pelanggan, $barberman, $service, $selectedService, $selectedBarberman, $selectedTanggal, $selectedJam, $tanggal, $jam, $status = 'booking';
+    public $tanggal = "";
+    public $selectedSlots = [];
+    public $currentStep = 3;
+    public $pelanggan, $barberman, $service, $selectedService, $selectedBarberman, $selectedTanggal, $selectedJam, $jam, $status = 'booking';
     public $services, $barbermen, $pelanggans, $name, $email, $phone, $disableForm = false;
-    public $successMessage = '';
 
-    // Properti untuk menampung data
 
 
     public function render()
@@ -32,6 +32,36 @@ class Create extends Component
             'pelanggan' => $this->pelanggans,
         ]);
     }
+
+    public function getAvailableSlots()
+    {
+        // Ambil semua slot dari 10:00 sampai 23:00
+        $allSlots = range(10, 23);
+
+        // Jika tidak ada tanggal yang dipilih, kembalikan semua slot
+        if (empty($this->selectedTanggal)) {
+            return $allSlots;
+        }
+
+        // Ambil slot yang sudah dibooking pada tanggal yang dipilih
+        $bookedSlots = Booking::where('tanggal', $this->selectedTanggal)->pluck('jam')->toArray();
+
+        // Ambil slot yang belum dibooking
+        $availableSlots = array_diff($allSlots, $bookedSlots);
+
+        // Jika memilih tanggal untuk hari ini, ambil slot yang belum lewat pada hari ini
+        if ($this->selectedTanggal == now()->toDateString()) {
+            $now = now()->hour;
+            $availableSlots = array_filter($availableSlots, function ($slot) use ($now) {
+                return $slot >= $now;
+            });
+        }
+
+        return $availableSlots;
+    }
+
+
+
 
     public function selectService($serviceId)
     {
@@ -63,6 +93,23 @@ class Create extends Component
         $this->currentStep = 3;
     }
 
+
+    // public function thirdStepSubmit()
+    // {
+
+    //     $validatedData = $this->validate([
+    //         'selectedTanggal' => 'required',
+    //         'selectedJam' => 'required',
+    //     ]);
+
+    //     // dd($validatedData);
+
+    //     $this->tanggal = $validatedData['selectedTanggal']; // Gunakan $validatedData untuk mendapatkan nilai yang diverifikasi
+    //     $this->jam = $validatedData['selectedJam'];
+
+    //     $this->currentStep = 4;
+    // }
+
     public function thirdStepSubmit()
     {
         $validatedData = $this->validate([
@@ -70,11 +117,18 @@ class Create extends Component
             'selectedJam' => 'required',
         ]);
 
-        $this->tanggal = $this->selectedTanggal;
-        $this->jam = $this->selectedJam;
+        $this->tanggal = $validatedData['selectedTanggal'];
+        $this->jam = $validatedData['selectedJam'];
 
+        // Simpan slot yang dipilih oleh pelanggan
+        $this->selectedSlots[] = $this->jam;
+
+        // Pindah ke langkah berikutnya
         $this->currentStep = 4;
     }
+
+
+
 
     public function submitForm()
     {
@@ -89,13 +143,12 @@ class Create extends Component
             'status' => $this->status,
         ]);
 
-        $this->successMessage = 'Booking Created Successfully.';
+        // $this->successMessage = 'Booking Created Successfully.';
 
         $this->clearForm();
 
         $this->currentStep = 1;
         return redirect('/')->with('success', 'Kamu Berhasil Booking!');
-
     }
 
     public function getServiceName()

@@ -49,8 +49,9 @@
                     </div>
                     <div class="mb-3">
                         <label>Tanggal</label>
-                        <input type="date" name="tanggal" wire:model='tanggal' class="form-control @error('tanggal') is-invalid @enderror"
-                            value="{{ @old('tanggal') }}" min="{{ date('Y-m-d')}}">
+                        <input type="date" name="tanggal" wire:model='tanggal'
+                            class="form-control @error('tanggal') is-invalid @enderror" value="{{ @old('tanggal') }}"
+                            min="{{ date('Y-m-d')}}">
                         @error('tanggal')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -70,16 +71,16 @@
                             {{-- {{date('Y-m-d')}} --}}
                             {{-- {{$tanggal}} --}}
                             @if ($tanggal == date('Y-m-d'))
-                            @for ($i = 10 ; $i<24 ; $i++) 
-                                <input type="radio" class="btn-check" name="jam" id="btn-check-outlined-{{$i}}" value="{{$i}}.00"  {{$i < date('H') ? 'disabled':''}} >
-                                <label class="btn btn-outline-primary" for="btn-check-outlined-{{$i}}">{{$i}}.00</label>
-                            @endfor
-                            
+                                @for ($i = 10 ; $i<24 ; $i++) 
+                                    <input type="radio" class="btn-check" name="jam" id="btn-check-outlined-{{$i}}" value="{{$i}}.00" {{$i < date('H') ? 'disabled':''}}>
+                                    <label class="btn btn-outline-primary" for="btn-check-outlined-{{$i}}">{{$i}}.00</label>
+                                @endfor
+
                             @else
-                            @for ($i = 10 ; $i<24 ; $i++) 
-                            <input type="radio" class="btn-check" name="jam" id="btn-check-outlined-{{$i}}" value="{{$i}}.00"  >
-                            <label class="btn btn-outline-primary" for="btn-check-outlined-{{$i}}">{{$i}}.00</label>
-                        @endfor
+                                @for ($i = 10 ; $i<24 ; $i++) <input type="radio" class="btn-check" name="jam"
+                                    id="btn-check-outlined-{{$i}}" value="{{$i}}.00">
+                                    <label class="btn btn-outline-primary" for="btn-check-outlined-{{$i}}">{{$i}}.00</label>
+                                @endfor
                             @endif
                         </div>
                     </div>

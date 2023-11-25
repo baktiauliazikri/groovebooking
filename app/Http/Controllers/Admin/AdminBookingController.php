@@ -116,26 +116,12 @@ class AdminBookingController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $validated = $request->validate([
-            'nama_pelanggan' => 'required',
-            'service_id' => 'required',
-            'barberman_id' => 'required',
-            'tanggal' => 'required',
-            'jam' => 'required',
-            'status' => 'required',
-        ], [
-            'nama_pelanggan.required' => 'Nama Pelanggan tidak boleh kosong',
-            'service_id.required' => 'Service',
-            'barberman_id.required' => 'Gambar Service tidak boleh kosong',
-            'tanggal.required' => 'Deskripsi Service tidak boleh kosong',
-            'jam.required' => 'Harga Service tidak boleh kosong',
-            'status.required' => 'Harga Service tidak boleh kosong',
+
+        Booking::where('id', $id)->update([
+            'status' => 'Selesai'
         ]);
 
-        $booking = Booking::findOrFail($id);
-        $booking->update($validated);
-
-        return redirect('/data-booking')->with('success', 'Data berhasil di perbarui!');
+        return redirect('/data-booking')->with('success', 'Pesanan sudah selesai!');
     }
 
     /**

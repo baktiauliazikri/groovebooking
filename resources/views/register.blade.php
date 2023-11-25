@@ -18,20 +18,34 @@
     <link rel="stylesheet" href="{{ asset('be/dist/css/adminlte.min.css') }}">
 </head>
 
-<body class="hold-transition login-page">
-    <div class="login-box">
+<body class="hold-transition register-page">
+    <div class="register-box">
         <div class="card">
             <div class="card-header text-center">
                 <img src="{{ asset('images/logo.png') }}" alt="logo" class="img-fluid" width="100"><br>
                 <small>Groove Barberhouse</small>
             </div>
-            <div class="card-body login-card-body">
-                <p class="login-box-msg">Selamat Datang di Website Groove Barberhouse</p>
-                <form action="/login-action" method="POST">
+            <div class="card-body register-card-body">
+                <h3 class="login-box-msg">Buat akun baru</h3>
+                <form action="/register-action" method="POST">
                     @csrf
                     <div class="input-group mb-3">
+                        <input type="text" name="name" class="form-control @error('name') is-invalid @enderror"
+                            placeholder="Nama" value="{{ old('name') }}">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-user"></span>
+                            </div>
+                        </div>
+                        @error('name')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
+                    <div class="input-group mb-3">
                         <input type="email" name="email" class="form-control @error('email') is-invalid @enderror"
-                            placeholder="Email" value="{{@old('email')}}">
+                            placeholder="Email" value="{{ old('email') }}">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-envelope"></span>
@@ -39,7 +53,7 @@
                         </div>
                         @error('email')
                         <div class="invalid-feedback">
-                            {{$message}}
+                            {{ $message }}
                         </div>
                         @enderror
                     </div>
@@ -57,10 +71,19 @@
                         </div>
                         @enderror
                     </div>
-                    <button type="submit" class="btn btn-primary btn-block mb-3">Sign In</button>
+                    <div class="input-group mb-3">
+                        <input type="password" name="password_confirmation"
+                            class="form-control" placeholder="Konfirmasi Password">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-lock"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block mb-3">Register</button>
                 </form>
-                <p class="mb-1">
-                    <a href="#">Lupa password ?</a>
+                <p class="mb-0">
+                    <a href="/login" class="text-center">Sudah punya akun? Login</a>
                 </p>
             </div>
         </div>

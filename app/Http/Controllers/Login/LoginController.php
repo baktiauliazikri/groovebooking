@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Login;
 
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class LoginController extends Controller
@@ -81,5 +82,39 @@ class LoginController extends Controller
             default:
                 return '/';
         }
+    }
+
+    public function showRegistrationForm()
+    {
+        return view('register');
+    }
+
+    /**
+     * Handle registration form submission.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function register(Request $request)
+    {
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|min:8|confirmed',
+        ]);
+        
+        // Create a new user with level 'pelanggan'
+        $user = User::create([
+            'name' => $validatedData['name'],
+            'email' => $validatedData['email'],
+            'password' => bcrypt($validatedData['password']),
+            'level' => 'Pelanggan',
+        ]);
+        
+
+        // Log the user in after registration
+        Auth::login($user);
+
+        return redirect('/')->with('toast_success', 'Registrasi berhasil!');
     }
 }
