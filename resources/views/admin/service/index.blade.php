@@ -15,7 +15,7 @@
                     Tambahkan Data Service
                 </a>
                 <div class="table-responsive">
-                    <table class="table table-bordered table-striped">
+                    <table id="example" class="display" style="width:100%">
                         <thead>
                             <tr>
                                 <th>No</th>

@@ -13,14 +13,13 @@
                     <div class="d-flex justify-content-center flex-wrap">
                         @foreach ($services as $data)
                         <div class="mx-2" style="width: 16rem; border: none;">
-                            <div class="card-body text-center">
+                            <div class="card-body custom-card-body text-center">
                                 <div class="text-center">
-                                    <img src="{{ asset('storage/' . $data->photo) }}" class="rounded mx-auto my-2"
-                                        width="100">
+                                    <img src="{{ asset('storage/' . $data->photo) }}" style="object-fit: cover;">
                                 </div>
                                 <p><strong>{{ $data->nama_service }}</strong></p>
 
-                                <button class="btn btn-warning btn-sm" wire:click="selectService({{ $data->id }})">
+                                <button class="btn btn-warning btn-md" wire:click="selectService({{ $data->id }})">
                                     Pilih
                                 </button>
                             </div>
@@ -28,8 +27,7 @@
                         @endforeach
                     </div>
                 </div>
-                <button class="btn btn-primary nextBtn btn-sm btn-lg float-end" wire:click="firstStepSubmit"
-                    type="button">
+                <button class="btn btn-primary nextBtn btn-md float-end" wire:click="firstStepSubmit" type="button">
                     Next
                 </button>
             </div>
@@ -41,31 +39,35 @@
             <div class="col-md-12">
                 <h3>Choose your Barberman</h3>
                 <div class="form-group">
-                    @if($barbermen)
-                    @foreach($barbermen as $data)
-                    <div class="d-flex flex-wrap mx-auto">
+                    <div class="d-flex justify-content-center flex-wrap">
+                        @foreach($barbermen as $data)
                         <div class="mx-2" style="width: 16rem; border: none;">
-                            <div class="card-body text-center">
+                            <div class="card-body custom-card-body text-center">
                                 <div class="text-center">
-                                    <img src="{{ asset('storage/foto_profile/' . $data->foto_profile) }}"
-                                        class="rounded mx-auto my-2" width="100">
+                                    <img src="{{ asset('storage/foto_profile/barberman/' . $data->foto_profile) }}"
+                                        class="rounded mx-auto my-2" width="200" height="200"
+                                        style="object-fit: cover;">
                                 </div>
                                 <p>{{ $data->name }}</p>
 
-                                <label>
+                                <button class="btn btn-warning btn-md" wire:click="selectBarberman({{ $data->id }})">
+                                    Pilih
+                                </button>
+
+                                {{-- <label>
                                     <input type="radio" wire:model="selectedBarberman" value="{{ $data->id }}">
                                     Pilih
-                                </label>
+                                </label> --}}
                             </div>
                         </div>
+                        @endforeach
                     </div>
-                    @endforeach
-                    @endif
+                    {{-- @endif --}}
                     @error('barberman') <span class="error">{{ $message }}</span> @enderror
                 </div>
-                <button class="btn btn-danger nextBtn btn-lg pull-right" type="button"
+                <button class="btn btn-warning nextBtn btn-md float-start" type="button"
                     wire:click="back(1)">Back</button>
-                <button class="btn btn-primary nextBtn btn-lg pull-right" type="button"
+                <button class="btn btn-primary nextBtn btn-md float-end" type="button"
                     wire:click="secondStepSubmit">Next</button>
             </div>
         </div>
@@ -75,44 +77,46 @@
         <div class="col-xs-12">
             <div class="col-md-12">
                 <h3>Pilih Tanggal</h3>
-                <div class="row">
-                    <div class="form-group col-6">
-                        <div id="calendar" style="width: 100%"></div>
-                        <input type="date" name="selectedTanggal" wire:model="selectedTanggal"
-                            class="form-control @error('selectedTanggal') is-invalid @enderror"
-                            min="{{ date('Y-m-d') }}">
-                        @error('selectedTanggal')
-                        <div class="invalid-feedback">
-                            {{ $message }}
+                <div class="card-body custom-card-body text-center">
+                    <div class="row">
+                        <div class="form-group col-6">
+                            <div id="calendar" style="width: 100%"></div>
+                            <input type="date" name="selectedTanggal" wire:model="selectedTanggal"
+                                class="form-control @error('selectedTanggal') is-invalid @enderror"
+                                min="{{ date('Y-m-d') }}">
+                            @error('selectedTanggal')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
                         </div>
-                        @enderror
-                    </div>
 
-                    <div class="col-md-6">
-                        @error('jam')
-                        <div class="invalid-feedback">
-                            {{ $message }}
+                        <div class="col-md-6">
+                            @error('jam')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
+
+                            @php
+                            $availableSlots = $this->getAvailableSlots();
+                            @endphp
+
+                            @foreach ($availableSlots as $slot)
+                            <input type="radio" class="btn-check" wire:model="selectedJam" name="selectedJam"
+                                id="btn-check-outlined-{{ $slot }}" value="{{ $slot }}" {{ in_array($slot,
+                                $this->selectedSlots) ? 'disabled' : '' }}>
+                            <label class="btn btn-outline-primary" for="btn-check-outlined-{{ $slot }}"
+                                style="margin-bottom: 10px;">{{ substr($slot, 0,5)}}</label>
+                            @endforeach
                         </div>
-                        @enderror
 
-                        @php
-                        $availableSlots = $this->getAvailableSlots();
-                        @endphp
-
-                        @foreach ($availableSlots as $slot)
-                        <input type="radio" class="btn-check" wire:model="selectedJam" name="selectedJam"
-                            id="btn-check-outlined-{{ $slot }}" value="{{ $slot }}.00" {{ in_array($slot,
-                            $this->selectedSlots) ? 'disabled' : '' }}>
-                        <label class="btn btn-outline-primary" for="btn-check-outlined-{{ $slot }}">{{ $slot
-                            }}.00</label>
-                        @endforeach
                     </div>
-
+                    <button class="btn btn-warning nextBtn btn-md float-start" type="button"
+                        wire:click="back(2)">Back</button>
+                    <button class="btn btn-primary nextBtn btn-md float-end" type="button"
+                        wire:click="thirdStepSubmit">Next</button>
                 </div>
-                <button class="btn btn-danger nextBtn btn-lg pull-right" type="button"
-                    wire:click="back(2)">Back</button>
-                <button class="btn btn-primary nextBtn btn-lg pull-right" type="button"
-                    wire:click="thirdStepSubmit">Next</button>
             </div>
         </div>
     </div>
@@ -156,9 +160,10 @@
                         <td><strong>{{$status}}</strong></td>
                     </tr>
                 </table>
-                <button class="btn btn-danger nextBtn btn-lg pull-right" type="button"
+                <button class="btn btn-warning nextBtn btn-md float-start" type="button"
                     wire:click="back(3)">Back</button>
-                <button class="btn btn-success btn-lg pull-right" wire:click="submitForm" type="button">Finish!</button>
+                <button class="btn btn-primary nextBtn btn-md float-end" wire:click="submitForm"
+                    type="button">Finish!</button>
             </div>
         </div>
     </div>

@@ -13,7 +13,7 @@
                     <i class="fas fa-plus"></i>
                     Tambahkan Data Pelanggan
                 </a>
-                <table class="table table-bordered table-striped">
+                <table id="example" class="display" style="width:100%">
                     <thead>
                         <tr>
                             <th>No</th>
@@ -31,7 +31,7 @@
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $data->name }}</td>
-                            <td><img src="{{ asset('storage/foto_profile/pelanggan/' .$data->foto_profile) }}" alt="gambar" class="img-fluid"
+                            <td><img src="{{ asset('/storage/foto_profile/pelanggan/' .$data->foto_profile) }}" alt="gambar" class="img-fluid"
                                 width="80"></td>
                             <td>{{ $data->email }}</td>
                             <td>{{ $data->phone }}</td>

@@ -1,6 +1,6 @@
 @extends('admin.layout.master')
 
-@section('menuDataBooking', 'active')
+@section('menuBookingBarberman', 'active')
 @section('content')
 <div class="row">
     <div class="col-lg">
@@ -9,20 +9,19 @@
                 Data Booking
             </div>
             <div class="card-body">
-                {{-- <a href="{{ route('data-booking.create') }}" class="btn btn-success mb-3">
-                    <i class="fas fa-plus"></i>
-                    Tambahkan Data Booking
-                </a> --}}
-                <a href="{{ route('data-booking.create') }}" class="btn btn-primary mb-3">
-                    <i class="fas fa-print"></i>
-                    Cetak Data Booking
-                </a>
+                <form action="/cetak-booking-barberman" method="GET" class="d-inline">
+                    @csrf
+                    <button type="submit" class="btn btn-primary mb-3">
+                        <i class="fas fa-print"></i>
+                        Cetak Data Booking
+                    </button>
+                </form>
+
                 <table id="example" class="display" style="width:100%">
                     <thead>
                         <tr>
                             <th>No</th>
                             <th>Nama Pelanggan</th>
-                            <th>Barberman</th>
                             <th>Service</th>
                             <th>Tanggal</th>
                             <th>Jam</th>
@@ -35,7 +34,6 @@
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $data->pelanggan -> name}}</td>
-                            <td>{{ $data->barberman -> name}}</td>
                             <td>{{ $data->service -> nama_service }}</td>
                             <td>{{ $data->tanggal }}</td>
                             <td>{{ $data->jam }}</td>
@@ -53,7 +51,8 @@
                             <td>
                                 @if ($data->status_orders == 'Selesai')
                                 @else
-                                <form action="{{ route('data-booking.update', $data->id) }}" method="POST">
+                                <form action="{{ route('booking-barberman.update', $data->id) }}" method="POST"
+                                    class="d-inline">
                                     @method('PUT')
                                     @csrf
                                     <button type="submit" class="btn btn-sm btn-success mt-2"
@@ -64,8 +63,7 @@
                                 </form>
 
                                 @endif
-                                <form action="{{ route('data-booking.destroy', $data->id) }}" method="POST"
-                                    >
+                                <form action="{{ route('data-booking.destroy', $data->id) }}" method="POST">
                                     @method('DELETE')
                                     @csrf
                                     <button type="submit" class="btn btn-danger btn-sm my-2"

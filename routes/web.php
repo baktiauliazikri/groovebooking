@@ -15,7 +15,8 @@ use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\Admin\AdminPelangganController;
 use App\Http\Controllers\Admin\AdminBarbermanController;
 use App\Http\Controllers\Admin\AdminBookingController;
-
+use App\Http\Controllers\Barberman\BarbermanBookingController;
+use App\Http\Controllers\Barberman\BarbermanCetakController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -60,6 +61,8 @@ Route::group(['middleware' => ['auth']], function () {
     });
 
     Route::group(['middleware' => [CekLevel::class . ':Barberman']], function () {
-        
+
+        Route::resource('booking-barberman', BarbermanBookingController::class);
+        Route::get('/cetak-booking-barberman', [BarbermanCetakController::class, 'cetakbookingbarberman']);
     });
 });

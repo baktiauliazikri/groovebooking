@@ -13,7 +13,7 @@
                     <i class="fas fa-plus"></i>
                     Tambahkan Data Barberman
                 </a>
-                <table class="table table-bordered table-striped">
+                <table id="example" class="display" style="width:100%">
                     <thead>
                         <tr>
                             <th>No</th>

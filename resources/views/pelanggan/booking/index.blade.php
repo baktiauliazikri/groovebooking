@@ -1,8 +1,8 @@
 @extends('pelanggan.layout.app')
 
+@section('menuBooking', 'active')
 @section('content')
     
-
 <section class="hero-section">
     <div class="container">
         <div class="row">

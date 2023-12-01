@@ -57,7 +57,7 @@ class AdminPelangganController extends Controller
             $file = $request->file('foto_profile');
             $fileName = hash('sha256', $file->getClientOriginalName()) . '.' . $file->getClientOriginalExtension();
 
-            $path = $file->storeAs('public/foto_profile/pelanggan', $fileName);
+            $path = $file->storeAs('public/foto_profile/pelanggan/', $fileName);
             $validated['foto_profile'] = str_replace('public/', '', $path);
         }
 
@@ -123,7 +123,7 @@ class AdminPelangganController extends Controller
             $file = $request->file('foto_profile');
             $fileName = hash('sha256', $file->getClientOriginalName()) . '.' . $file->getClientOriginalExtension();
 
-            $path = $file->storeAs('public/foto_profile', $fileName);
+            $path = $file->storeAs('public/foto_profile/pelanggan/', $fileName);
             $validated['foto_profile'] = str_replace('public/', '', $path);
         } else {
             // Jika tidak ada file foto_profile di dalam request, atur nilai default atau sesuai kebutuhan
