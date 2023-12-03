@@ -17,6 +17,8 @@ use App\Http\Controllers\Admin\AdminBarbermanController;
 use App\Http\Controllers\Admin\AdminBookingController;
 use App\Http\Controllers\Barberman\BarbermanBookingController;
 use App\Http\Controllers\Barberman\BarbermanCetakController;
+use App\Http\Controllers\Pelanggan\PelangganServiceController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -30,6 +32,8 @@ use App\Http\Controllers\Barberman\BarbermanCetakController;
 
 //Pelanggan
 Route::get('/', [PelangganLandingController::class, 'index'])->name('/');
+
+Route::resource('detail-service', PelangganServiceController::class);
 Route::resource('review', PelangganReviewController::class);
 
 
@@ -63,6 +67,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::group(['middleware' => [CekLevel::class . ':Barberman']], function () {
 
         Route::resource('booking-barberman', BarbermanBookingController::class);
-        Route::get('/cetak-booking-barberman', [BarbermanCetakController::class, 'cetakbookingbarberman']);
+        // Route::get('/', '@cetakbookingbarberman', 'cetak-booking-barberman');
+        Route::get('/cetak-booking-barberman', [BarbermanCetakController::class, 'cetakbookingbarberman'])->name('/cetak-booking-barberman');
     });
 });

@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Barberman;
+namespace App\Http\Controllers\Pelanggan;
 
 use App\Http\Controllers\Controller;
-use App\Models\Booking;
+use App\Models\Service;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class BarbermanBookingController extends Controller
+class PelangganServiceController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,26 +15,14 @@ class BarbermanBookingController extends Controller
      */
     public function index()
     {
-        // Mendapatkan pengguna yang sedang diotentikasi
-        $user = Auth::user();
-
-        // Mendapatkan data booking berdasarkan level "barberman" dan nama barberman
-        $bookings = Booking::whereHas('barberman', function ($query) use ($user) {
-            $query->where('level', 'barberman')->where('name', $user->name);
-        })->latest()->get();
-
-        return view('barberman.booking.index', compact('bookings'));
+        //
     }
-
-    
 
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-
-
     public function create()
     {
         //
@@ -60,7 +47,8 @@ class BarbermanBookingController extends Controller
      */
     public function show($id)
     {
-        //
+        $service = Service::findOrFail($id);
+        return view('pelanggan.service.detail', compact('service'));
     }
 
     /**
@@ -83,11 +71,7 @@ class BarbermanBookingController extends Controller
      */
     public function update(Request $request, $id)
     {
-        Booking::where('id', $id)->update([
-            'status' => 'Selesai'
-        ]);
-
-        return redirect('/booking-barberman')->with('success', 'Pesanan sudah selesai!');
+        //
     }
 
     /**

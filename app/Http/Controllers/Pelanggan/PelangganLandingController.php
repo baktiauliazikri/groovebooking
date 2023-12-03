@@ -55,7 +55,7 @@ class PelangganLandingController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**

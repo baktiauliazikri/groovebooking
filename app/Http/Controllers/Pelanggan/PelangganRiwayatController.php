@@ -49,7 +49,8 @@ class PelangganRiwayatController extends Controller
      */
     public function show($id)
     {
-        //
+        $booking = Booking::findOrFail($id);
+        return view('pelanggan.riwayat.detail', compact('booking'));
     }
 
     /**
@@ -83,6 +84,32 @@ class PelangganRiwayatController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $booking = Booking::findOrFail($id);
+
+        if (!$booking) {
+            return redirect()->route('my-booking.index')->with('error', 'Booking tidak ditemukan.');
+        }
+
+        $currentTime = time();
+        $bookingTime = strtotime($booking->created_at);
+
+        // Hitung selisih waktu dalam menit
+        $timeDifference = round(($currentTime - $bookingTime) / 60);
+
+        // Cek apakah booking dapat dibatalkan
+        if ($booking->status != 'Selesai' && $timeDifference < 15) {
+            // Update status booking menjadi 'Dibatalkan'
+            $booking->status = 'Dibatalkan';
+            $booking->save();
+
+            // Redirect dengan pesan sukses
+            return redirect()->route('my-booking.index')->with('success', 'Booking berhasil dibatalkan.');
+        } elseif ($booking->status == 'Selesai') {
+            // Redirect dengan pesan error jika booking sudah selesai
+            return redirect()->route('my-booking.index')->with('error', 'Booking sudah selesai dan tidak dapat dibatalkan.');
+        } else {
+            // Redirect dengan pesan error jika booking sudah lewat 15 menit
+            return redirect()->route('my-booking.index')->with('error', 'Booking sudah lewat batas waktu untuk pembatalan.');
+        }
     }
 }

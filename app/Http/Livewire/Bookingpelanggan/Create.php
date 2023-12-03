@@ -93,12 +93,15 @@ class Create extends Component
     {
         // Ambil slot yang sudah dibooking pada tanggal yang dipilih di langkah 3
         $bookedSlots = Booking::where('tanggal', $this->selectedTanggal)
-            ->where('barberman_id', $this->barberman)
-            ->pluck('jam')
-            ->toArray();
-
+        ->where('barberman_id', $this->barberman)
+        ->where('status', '!=', 'Dibatalkan')
+        ->pluck('jam')
+        ->toArray();
+        
+        // dd($bookedSlots);
         // Ambil slot yang sudah dibooking untuk tanggal-tanggal selanjutnya dari hari ini
         $futureBookedSlots = Booking::where('tanggal', '>', now()->toDateString())
+            ->where('status', '!=', 'Dibatalkan')
             ->pluck('jam')
             ->toArray();
 

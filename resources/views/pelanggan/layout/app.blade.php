@@ -13,13 +13,16 @@
     <!-- CSS FILES -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&family=Sono:wght@200;300;400;500;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/gijgo@1.9.14/css/gijgo.min.css" type="text/css" />
-    <link rel="stylesheet" href="fe/css/bootstrap.min.css">
-    <link rel="stylesheet" href="fe/css/bootstrap-icons.css">
-    <link rel="stylesheet" href="fe/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="fe/css/owl.theme.default.min.css">
-    <link href="fe/css/templatemo-pod-talk.css" rel="stylesheet">
-    <link href="fe/css/wizard.css" rel="stylesheet" id="bootstrap-css">
+    <link rel="stylesheet" href="/fe/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/fe/css/bootstrap-icons.css">
+    <link rel="stylesheet" href="/fe/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="/fe/css/owl.theme.default.min.css">
+    <link href="/fe/css/templatemo-pod-talk.css" rel="stylesheet">
+    <link href="/fe/css/wizard.css" rel="stylesheet" id="bootstrap-css">
 </head>
 
 <body>
@@ -29,7 +32,7 @@
         <nav class="navbar navbar-expand-lg">
             <div class="container">
                 <a class="navbar-brand me-lg-5 me-0" href="/">
-                    <img src="images/logo.png" class="logo-image img-fluid" alt="templatemo pod talk">
+                    <img src="../images/logo.png" class="logo-image img-fluid" alt="templatemo pod talk">
                 </a>
 
                 {{-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -44,8 +47,8 @@
                                 Booking</a>
                         </li>
 
-                        <li class="nav-item @yield('menuProfile')">
-                            <a class="nav-link" href="{{route('pelanggan-profile.index')}}">Profile</a>
+                        <li class="nav-item">
+                            <a class="nav-link @yield('menuProfile')" href="{{route('pelanggan-profile.index')}}">Profile</a>
                         </li>
                     </ul>
                 </div>
@@ -60,10 +63,11 @@
     </main>
 
     <!-- JAVASCRIPT FILES -->
-    <script src="fe/js/jquery.min.js"></script>
-    <script src="fe/js/bootstrap.bundle.min.js"></script>
-    <script src="fe/js/owl.carousel.min.js"></script>
-    <script src="fe/js/custom.js"></script>
+    <script src="/fe/js/jquery.min.js"></script>
+    <script src="/fe/js/bootstrap.bundle.min.js"></script>
+    <script src="/fe/js/owl.carousel.min.js"></script>
+    <script src="/fe/js/custom.js"></script>
+    
     @livewireScripts
     @include('sweetalert::alert')
 </body>
@@ -75,7 +79,7 @@
             <div class="col-lg-6 col-12 mb-5 mb-lg-0">
                 <div class="col-lg-2 col-md-3 col-12">
                     <a class="navbar-brand" href="index.html">
-                        <img src="images/logo.png" class="logo-image img-fluid" alt="templatemo pod talk">
+                        <img src="../images/logo.png" class="logo-image img-fluid" alt="templatemo pod talk">
                         <ul class="social-icon">
                             <li class="social-icon-item mb-3">
                                 <p class="copyright-text mb-0">Copyright © 2036 Talk Pod Company</p>

@@ -13,6 +13,11 @@
             text-align: center;
         }
 
+        .logo {
+            width: 200px;
+            /* Adjust the width as needed */
+        }
+
         /* Style untuk informasi perusahaan */
         .company-info {
             font-weight: bold;
@@ -45,7 +50,7 @@
             font-weight: bold;
             padding: 10px;
             text-align: left;
-            border: 1px solid white
+            border: 1px solid white;
         }
 
         /* Style untuk baris tabel */
@@ -68,15 +73,32 @@
         td:nth-child(5) {
             text-align: center;
         }
+
+        .badge-warning {
+            background-color: #ffc107;
+            color: #212529;
+        }
+
+        .badge-success {
+            background-color: #2835a7;
+            color: #fff;
+        }
     </style>
 </head>
 
 <body>
 
     <div class="header">
-        <img src="{{ public_path('images/logo.png') }}" alt="Logo Perusahaan" class="logo" width="100">
-        <div class="company-info">Groove Barberhouse</div>
-        <div class="company-address">Jl Soekarno-Hatta, Kec. Mandiangin Koto Selayan, Kota Bukittinggi, Sumatera Barat
+        <div class="row">
+            <div class="col float-start">
+                <img src="../images/logo.png" alt="Logo Perusahaan" class="logo">
+            </div>
+            <div class="col">
+                <div class="company-info">Groove Barberhouse</div>
+                <div class="company-address">Jl Soekarno-Hatta, Kec. Mandiangin Koto Selayan, Kota Bukittinggi, Sumatera
+                    Barat
+                </div>
+            </div>
         </div>
     </div>
 
@@ -112,6 +134,11 @@
         </tr>
         @endforeach
     </table>
+
+    <script type="text/javascript">
+        window.print();
+    </script>
+
 </body>
 
 </html>

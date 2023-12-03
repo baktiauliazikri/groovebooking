@@ -2,7 +2,7 @@
     @foreach ($barberman as $data)
     <div class="col-lg-3 col-md-6 col-12 mb-4 mb-lg-0">
         <div class="custom-block custom-block-overlay">
-            <a href="detail-page.html" class="custom-block-image-wrap">
+            <a  class="custom-block-image-wrap">
                 <img src="{{ asset('/storage/foto_profile/barberman/' . $data->foto_profile) }}"
                     class="custom-block-image img-fluid" alt="">
             </a>

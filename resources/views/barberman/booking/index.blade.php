@@ -9,13 +9,7 @@
                 Data Booking
             </div>
             <div class="card-body">
-                <form action="/cetak-booking-barberman" method="GET" class="d-inline">
-                    @csrf
-                    <button type="submit" class="btn btn-primary mb-3">
-                        <i class="fas fa-print"></i>
-                        Cetak Data Booking
-                    </button>
-                </form>
+                <a href="{{route('/cetak-booking-barberman')}}" target="_blank" class="btn btn-primary"><i class="fas fa print"></i>Cetak Data</a>
 
                 <table id="example" class="display" style="width:100%">
                     <thead>

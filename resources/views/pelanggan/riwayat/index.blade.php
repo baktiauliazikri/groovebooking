@@ -2,11 +2,13 @@
 
 @section('menuMyBooking', 'active')
 @section('content')
-<header>
 
-</header>
 <section class="hero-section">
     <div class="container">
+        <div class="row mb-3">
+
+            <h1 class="text-center text-white">My Booking</h1>
+        </div>
         <div class="row">
             <div class="col-lg-12">
                 <div class="row justify-content-center">
@@ -47,17 +49,26 @@
                                             <th scope="row text-left">Status</th>
                                             <td>:</td>
                                             <td>
-                                                <span
-                                                    class="badge {{ $booking->status == 'Selesai' ? 'badge-warning' : 'badge-success' }}">
+                                                <span class="badge 
+                                                    @if($booking->status == 'Selesai')
+                                                        badge-warning
+                                                    @elseif($booking->status == 'Dibatalkan')
+                                                        badge-danger
+                                                    @else
+                                                        badge-success
+                                                    @endif">
                                                     {{ $booking->status }}
                                                 </span>
+
                                             </td>
                                         </tr>
                                         <tr>
                                             <th colspan="3">
-                                                <div class="center" style="text-align:center;"><a style="color:#1bc0da;"
-                                                        href="https://hairnerds.id/customer/mybooking/105754/detail">Lihat
-                                                        Detail</a></div>
+                                                <div class="center" style="text-align:center;">
+                                                    <a href="{{route('my-booking.show', $booking->id)}}">
+                                                        Lihat Detail
+                                                    </a>
+                                                </div>
                                             </th>
                                         </tr>
                                     </tbody>

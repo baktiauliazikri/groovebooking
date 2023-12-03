@@ -22,16 +22,17 @@
         integrity="sha384-oDggmHJgB1A4fckDg0RqFFC4JY/AHRH4b5BtgU6twr5jepwBrM8ow5MWc3USCtiW" crossorigin="anonymous">
 
 
-    <link rel="stylesheet" href="fe/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ asset('/fe/css/bootstrap.min.css') }}">
 
-    <link rel="stylesheet" href="fe/css/bootstrap-icons.css">
+    <link rel="stylesheet" href="{{ asset('/fe/css/bootstrap-icons.css') }}">
 
-    <link rel="stylesheet" href="fe/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="{{ asset('/fe/css/owl.carousel.min.css') }}">
 
-    <link rel="stylesheet" href="fe/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="{{ asset('/fe/css/owl.theme.default.min.css') }}">
 
-    <link href="fe/css/templatemo-pod-talk.css" rel="stylesheet">
-    
+    <link href="{{ asset('/fe/css/templatemo-pod-talk.css') }}" rel="stylesheet">
+
+
 
     <!--
 
@@ -49,7 +50,7 @@ https://templatemo.com/tm-584-pod-talk
         <nav class="navbar navbar-expand-lg">
             <div class="container">
                 <a class="navbar-brand me-lg-5 me-0" href="/">
-                    <img src="images/logo.png" class="logo-image img-fluid" alt="templatemo pod talk">
+                    <img src="../images/logo.png" class="logo-image img-fluid" alt="templatemo pod talk">
                 </a>
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -120,7 +121,7 @@ https://templatemo.com/tm-584-pod-talk
                 <div class="col-lg-6 col-12 mb-5 mb-lg-0">
                     <div class="col-lg-2 col-md-3 col-12">
                         <a class="navbar-brand" href="index.html">
-                            <img src="images/logo.png" class="logo-image img-fluid" alt="templatemo pod talk">
+                            <img src="../images/logo.png" class="logo-image img-fluid" alt="groove">
                             <ul class="social-icon">
                                 <li class="social-icon-item mb-3">
                                     <p class="copyright-text mb-0">Copyright © 2036 Talk Pod Company</p>
@@ -166,10 +167,11 @@ https://templatemo.com/tm-584-pod-talk
 
 
     <!-- JAVASCRIPT FILES -->
-    <script src="fe/js/jquery.min.js"></script>
-    <script src="fe/js/bootstrap.bundle.min.js"></script>
-    <script src="fe/js/owl.carousel.min.js"></script>
-    <script src="fe/js/custom.js"></script>
+    <script src="{{ asset('/fe/js/jquery.min.js') }}"></script>
+    <script src="{{ asset('/fe/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('/fe/js/owl.carousel.min.js') }}"></script>
+    <script src="{{ asset('/fe/js/custom.js') }}"></script>
+
     {{-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> --}}

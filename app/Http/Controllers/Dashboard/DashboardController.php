@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Dashboard;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Booking;
 use App\Models\Service;
 use App\Models\User;
 
@@ -17,8 +18,10 @@ class DashboardController extends Controller
     public function index()
     {
         return view('admin.dashboard.index',[
-        'pelanggan' => User::where('level', 'pelanggan')->get(),
-        'services' => Service::all()
+        'pelanggan' => User::where('level', 'Pelanggan')->get(),
+        'barberman' => User::where('level', 'Barberman')->get(),
+        'services' => Service::all(),
+        'bookings' => Booking::all(),
         ]);
     }
 

@@ -24,9 +24,7 @@
 
             <div class="info-box-content">
                 <span class="info-box-text">Data Barberman</span>
-                {{-- <span class="info-box-number"> --}}
-                    {{-- {{ @count($barangs) }} --}}
-                    {{-- </span> --}}
+                <span class="info-box-number">{{ @count($barberman) }}</span>
             </div>
             <!-- /.info-box-content -->
         </div>
@@ -48,7 +46,7 @@
     <!-- /.col -->
 
     <!-- fix for small devices only -->
-    <div class="clearfix hidden-md-up"></div>
+    {{-- <div class="clearfix hidden-md-up"></div> --}}
 
     <div class="col-12 col-sm-6 col-md-3">
         <div class="info-box mb-3">
@@ -56,7 +54,7 @@
 
             <div class="info-box-content">
                 <span class="info-box-text">Booking</span>
-                {{-- <span class="info-box-number">{{ @count($proses) }}</span> --}}
+                <span class="info-box-number">{{ @count($bookings) }}</span>
             </div>
             <!-- /.info-box-content -->
         </div>
