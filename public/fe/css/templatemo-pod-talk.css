@@ -169,8 +169,8 @@ strong {
 }
 
 .section-padding {
-  padding-top: 100px;
-  padding-bottom: 100px;
+  padding-top: 50px;
+  padding-bottom: 50px;
 }
 
 main {
@@ -1349,4 +1349,15 @@ i.fas.fa-star.filled {
 .custom-card-body {
   max-width: 100%; /* atau tinggi yang diinginkan */
   max-height: 100%; /* atau lebar yang diinginkan */
+}
+
+.scroll-animation {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 2s, transform 2s; /* Ubah nilai transition menjadi lebih lama */
+}
+
+.scroll-animation.is-visible {
+  opacity: 1;
+  transform: translateY(0);
 }

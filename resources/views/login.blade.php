@@ -60,7 +60,7 @@
                     <button type="submit" class="btn btn-primary btn-block mb-3">Sign In</button>
                 </form>
                 <p class="mb-1">
-                    <a href="#">Lupa password ?</a>
+                    <a href="/register">Belum Punya Akun?</a>
                 </p>
             </div>
         </div>

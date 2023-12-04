@@ -5,12 +5,12 @@
     </div>
     @endif
 
-    <div class="row setup-content {{ $currentStep != 1 ? 'displayNone' : '' }}" id="step-1">
+    <div class=" row setup-content {{ $currentStep != 1 ? 'displayNone' : '' }}" id="step-1">
         <div class="col-xs-12">
             <div class="col-md-12">
                 <h3>Choose your service</h3>
                 <div class="form-group">
-                    <div class="d-flex justify-content-center flex-wrap">
+                    <div class="d-flex justify-content-center flex-wrap ">
                         @foreach ($services as $data)
                         <div class="mx-2" style="width: 16rem; border: none;">
                             <div class="card-body custom-card-body text-center">

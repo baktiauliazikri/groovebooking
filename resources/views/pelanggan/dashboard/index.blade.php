@@ -84,7 +84,7 @@
 </section>
 
 
-<section class="latest-podcast-section section-padding pb-0" id="services">
+<section class="latest-podcast-section section-padding pb-0 scroll-animation" id="services">
     <div class="container">
         <div class="row justify-content-center">
 
@@ -100,7 +100,7 @@
 </section>
 
 
-<section class="topics-section section-padding pb-0" id="barberman">
+<section class="topics-section section-padding pb-0 scroll-animation" id="barberman">
     <div class="container">
         <div class="row">
             <div class="col-lg-12 col-12">
@@ -115,7 +115,7 @@
 </section>
 
 
-<section class="trending-podcast-section section-padding" id="review">
+<section class="trending-podcast-section section-padding scroll-animation" id="review">
     <div class="container">
         <div class="row">
             <div class="col-lg-12 col-12">

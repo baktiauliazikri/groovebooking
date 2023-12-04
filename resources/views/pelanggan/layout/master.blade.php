@@ -118,52 +118,44 @@ https://templatemo.com/tm-584-pod-talk
         <div class="container">
             <div class="row">
 
-                <div class="col-lg-6 col-12 mb-5 mb-lg-0">
+                <div class="col-lg-5 col-12 mb-3 mb-lg-0">
                     <div class="col-lg-2 col-md-3 col-12">
                         <a class="navbar-brand" href="index.html">
                             <img src="../images/logo.png" class="logo-image img-fluid" alt="groove">
                             <ul class="social-icon">
                                 <li class="social-icon-item mb-3">
-                                    <p class="copyright-text mb-0">Copyright © 2036 Talk Pod Company</p>
+                                    <p class="copyright-text mb-0">Copyright © Groove Barberhouse</p>
                                 </li>
                             </ul>
                         </a>
                     </div>
                 </div>
 
-                <div class="col-lg-3 col-md-6 col-12 mb-4 mb-md-0 mb-lg-0">
-                    <h6 class="site-footer-title mb-3">Contact</h6>
+                <div class="col-lg-4 col-md-6 col-12 mb-2 mb-md-0 mb-lg-0">
+                    <h6 class="site-footer-title mb-2">Contact</h6>
 
-                    <p class="mb-2"><strong class="d-inline me-2">Phone:</strong> 010-020-0340</p>
+                    <p class="mb-1"><strong class="d-inline me-2">Phone:</strong> 010-020-0340</p>
 
                     <p>
                         <strong class="d-inline me-2">Email:</strong>
-                        <a href="#">inquiry@pod.co</a>
+                        <a href="#">groovebarberhouse@gmail.com</a>
                     </p>
                 </div>
 
                 <div class="col-lg-3 col-md-6 col-12">
-                    <h6 class="site-footer-title mb-3">Social</h6>
+                    <h6 class="site-footer-title mb-2">Social</h6>
 
                     <ul class="social-icon">
                         <li class="social-icon-item">
-                            <a href="#" class="social-icon-link bi-instagram"></a>
+                            <a href="https://www.instagram.com/groovebarberhouse/" target="_blank" class="social-icon-link bi-instagram"></a>
                         </li>
-
-                        <li class="social-icon-item">
-                            <a href="#" class="social-icon-link bi-twitter"></a>
-                        </li>
-
-                        <li class="social-icon-item">
-                            <a href="#" class="social-icon-link bi-whatsapp"></a>
-                        </li>
-
                     </ul>
                 </div>
 
             </div>
         </div>
     </footer>
+
 
 
     <!-- JAVASCRIPT FILES -->
@@ -177,6 +169,23 @@ https://templatemo.com/tm-584-pod-talk
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> --}}
     @include('sweetalert::alert')
 
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+        window.addEventListener('scroll', function () {
+            var elements = document.querySelectorAll('.scroll-animation');
+
+            elements.forEach(function (element) {
+                var position = element.getBoundingClientRect().top;
+
+                // Tambahkan class is-visible saat elemen masuk ke dalam viewport
+                if (position < window.innerHeight) {
+                    element.classList.add('is-visible');
+                }
+            });
+        });
+    });
+    </script>
 </body>
 
 </html>
