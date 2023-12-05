@@ -41,9 +41,11 @@ TemplateMo 584 Pod Talk
 https://templatemo.com/tm-584-pod-talk
 
 -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
+    
 
     <main>
 
@@ -142,12 +144,13 @@ https://templatemo.com/tm-584-pod-talk
                     </p>
                 </div>
 
-                <div class="col-lg-3 col-md-6 col-12">
+                <div class="col-lg-3 col-md-6 col-12" >
                     <h6 class="site-footer-title mb-2">Social</h6>
 
-                    <ul class="social-icon">
+                    <ul class="social-icon" >
                         <li class="social-icon-item">
-                            <a href="https://www.instagram.com/groovebarberhouse/" target="_blank" class="social-icon-link bi-instagram"></a>
+                            <a href="https://www.instagram.com/groovebarberhouse/" target="_blank"
+                                class="social-icon-link bi-instagram"></a>
                         </li>
                     </ul>
                 </div>
@@ -172,19 +175,20 @@ https://templatemo.com/tm-584-pod-talk
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-        window.addEventListener('scroll', function () {
-            var elements = document.querySelectorAll('.scroll-animation');
+            window.addEventListener('scroll', function () {
+                var elements = document.querySelectorAll('.scroll-animation');
 
-            elements.forEach(function (element) {
-                var position = element.getBoundingClientRect().top;
+                elements.forEach(function (element) {
+                    var position = element.getBoundingClientRect().top;
 
-                // Tambahkan class is-visible saat elemen masuk ke dalam viewport
-                if (position < window.innerHeight) {
-                    element.classList.add('is-visible');
-                }
+                    // Tambahkan class is-visible saat elemen masuk ke dalam viewport
+                    if (position < window.innerHeight) {
+                        element.classList.add('is-visible');
+                    }
+                });
             });
         });
-    });
+
     </script>
 </body>
 

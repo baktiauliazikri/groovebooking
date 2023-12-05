@@ -16,14 +16,24 @@
     <link rel="stylesheet" href="{{ asset('be/plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('be/dist/css/adminlte.min.css') }}">
+
+    <style>
+        body {
+            background-image: url('https://images.unsplash.com/photo-1585747860715-2ba37e788b70?q=80&w=2074&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); /* Ganti URL dengan URL gambar latar belakang yang sesuai */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+    </style>
 </head>
 
 <body class="hold-transition login-page">
-    <div class="login-box">
+    <div class="login-box" style="opacity: 0.9;">
         <div class="card">
             <div class="card-header text-center">
-                <img src="{{ asset('images/logo.png') }}" alt="logo" class="img-fluid" width="100"><br>
-                <small>Groove Barberhouse</small>
+                <img src="{{ asset('images/logo.png') }}" alt="logo" class="img-fluid" width="200"><br>
+                <!-- <small>Groove Barberhouse</small> -->
             </div>
             <div class="card-body login-card-body">
                 <p class="login-box-msg">Selamat Datang di Website Groove Barberhouse</p>

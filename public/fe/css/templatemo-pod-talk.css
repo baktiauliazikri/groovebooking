@@ -1361,3 +1361,14 @@ i.fas.fa-star.filled {
   opacity: 1;
   transform: translateY(0);
 }
+
+.star-rating {
+  color: #FFD700; /* Warna kuning untuk bintang */
+}
+
+.my-custom-scrollbar {
+  position: relative;
+  width: 800px;
+  height: 400px;
+  overflow: auto;
+}

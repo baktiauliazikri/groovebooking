@@ -64,12 +64,11 @@
                                 @method('DELETE')
                                 @csrf
                                 <button type="submit" class="btn btn-danger my-2"
-                                    onclick="return confirm('Anda yakin cancel booking ini?')">
+                                    onclick="return confirm('Anda yakin cancel booking ini?')" @if($booking->status ==
+                                    'Selesai' || $booking->status == 'Dibatalkan') disabled @endif>
                                     <i class="fas fa-trash">Cancel</i>
                                 </button>
                             </form>
-                            {{-- <a href="{{ route('my-booking.destroy',$booking->id) }}"
-                                class="btn btn-danger">Cancel</a> --}}
                             <a href="{{ route('my-booking.index') }}" class="btn btn-primary">Kembali</a>
                         </div>
                     </div>
