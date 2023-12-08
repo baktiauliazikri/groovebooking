@@ -12,7 +12,7 @@
                 <span class="info-box-text">Data Pelanggan</span>
                 <span class="info-box-number">
                     {{ @count($pelanggan) }}
-                    </span>
+                </span>
             </div>
             <!-- /.info-box-content -->
         </div>
@@ -45,16 +45,13 @@
     </div>
     <!-- /.col -->
 
-    <!-- fix for small devices only -->
-    {{-- <div class="clearfix hidden-md-up"></div> --}}
-
     <div class="col-12 col-sm-6 col-md-3">
         <div class="info-box mb-3">
             <span class="info-box-icon bg-success elevation-1"><i class="fas fa-shopping-cart"></i></span>
 
             <div class="info-box-content">
-                <span class="info-box-text">Booking</span>
-                <span class="info-box-number">{{ @count($bookings) }}</span>
+                <span class="info-box-text">Booking Selesai</span>
+                <span class="info-box-number">{{ @count($selesai) }}</span>
             </div>
             <!-- /.info-box-content -->
         </div>
@@ -62,4 +59,6 @@
     </div>
     <!-- /.col -->
 </div>
+
+@include('admin.cetak.index')
 @endsection

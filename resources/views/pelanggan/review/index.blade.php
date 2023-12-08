@@ -2,29 +2,36 @@
 
 <div class="container">
     <div class="row">
-
-
-        <!-- Row kedua untuk menampilkan list review -->
         <div class="col-lg-12 col-12">
             <div class="row">
-                @foreach($reviews->take(6) as $index => $data)
-                <div class="col-lg-6 col-12 mb-3 scroll-animation">
+                @foreach($reviews->take(6) as $data)
+                <div class="col-lg-4 col-12 mb-3 ">
                     <div class="card">
-                        <div class="card-body" ">
-                            <p class="card-title "   >Nama : <strong>{{ $data->nama_pengunjung }}</strong></p>
-                            <p class="card-text"  >Rating :<strong><span class="star-rating"> {!! str_repeat('&#9733;',
-                                        $data->rating) !!}</span></strong></p>
-                            <p class="card-text"  >Ulasan : <strong>{{ $data->ulasan }}</strong></p>
-                            <p class="mb-3"  >Tanggal : <strong>{{ $data->created_at->format('d M Y') }}</strong></p>
-
+                        <div class="card-body">
+                            <div class="card-title">{{ $data->created_at->format('d M Y') }}</div>
+                            <table>
+                                <tr>
+                                    <td>Nama</td>
+                                    <td>: </td>
+                                    <td>  <strong>{{ $data->nama_pengunjung }}</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>Rating</td>
+                                    <td>: </td>
+                                    <td>  
+                                        <span class="star-rating">{!! str_repeat('&#9733;', $data->rating) !!}</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Ulasan</td>
+                                    <td>: </td>
+                                    <td>  <strong>{{ $data->ulasan }}</strong></td>
+                                </tr>
+                                
+                            </table>
                         </div>
                     </div>
                 </div>
-
-                @if(($index + 1) % 2 == 0)
-            </div>
-            <div class="row">
-                @endif
                 @endforeach
             </div>
         </div>

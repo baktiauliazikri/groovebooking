@@ -17,7 +17,7 @@
                                 <div class="text-center">
                                     <img src="{{ asset('storage/' . $data->photo) }}" style="object-fit: cover;">
                                 </div>
-                                <p><strong>{{ $data->nama_service }}</strong></p>
+                                {{-- <h3><strong>{{ $data->nama_service }}</strong></h3> --}}
 
                                 <button class="btn btn-warning btn-md" wire:click="selectService({{ $data->id }})">
                                     Pilih
@@ -48,7 +48,7 @@
                                         class="rounded mx-auto my-2" width="200" height="200"
                                         style="object-fit: cover;">
                                 </div>
-                                <p>{{ $data->name }}</p>
+                                <h3>{{ $data->name }}</h3>
 
                                 <button class="btn btn-warning btn-md" wire:click="selectBarberman({{ $data->id }})">
                                     Pilih

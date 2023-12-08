@@ -6,16 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Data Booking</title>
+    <link href="{{ asset('/fe/css/templatemo-pod-talk.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('/fe/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('/fe/css/bootstrap-icons.css') }}">
+    <link rel="stylesheet" href="{{ asset('/fe/css/owl.carousel.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('/fe/css/owl.theme.default.min.css') }}">
     <style>
         .header {
             color: black;
             padding: 20px;
             text-align: center;
-        }
-
-        .logo {
-            width: 200px;
-            /* Adjust the width as needed */
         }
 
         /* Style untuk informasi perusahaan */
@@ -26,6 +26,11 @@
         }
 
         /* Style untuk alamat perusahaan */
+        .company-slogan {
+            font-size: 16px;
+            font-weight: bold;
+        }
+
         .company-address {
             font-size: 14px;
         }
@@ -36,109 +41,75 @@
             margin: 20px 0;
         }
 
-        /* Style untuk tabel */
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 20px;
+        .logo {
+            width: 160px;
+            /* Ubah lebar logo sesuai kebutuhan */
+            height: auto;
+            /* Tinggi akan disesuaikan agar proporsional dengan lebar */
         }
 
-        /* Style untuk header kolom tabel */
-        th {
-            background-color: gainsboro;
-            color: black;
-            font-weight: bold;
-            padding: 10px;
-            text-align: left;
-            border: 1px solid white;
-        }
-
-        /* Style untuk baris tabel */
-        tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
-
-        /* Style untuk sel dalam tabel */
-        td {
-            padding: 10px;
-            border: 1px solid #ccc;
-        }
-
-        /* Style untuk sel dengan data harga */
-        td:nth-child(4) {
-            text-align: right;
-        }
-
-        /* Style untuk sel dengan tanggal pesanan */
-        td:nth-child(5) {
+        .alert {
             text-align: center;
-        }
-
-        .badge-warning {
-            background-color: #ffc107;
-            color: #212529;
-        }
-
-        .badge-success {
-            background-color: #2835a7;
-            color: #fff;
+            margin-top: 20px;
         }
     </style>
 </head>
 
 <body>
-
     <div class="header">
-        <div class="row">
-            <div class="col float-start">
-                <img src="../images/logo.png" alt="Logo Perusahaan" class="logo">
-            </div>
-            <div class="col">
-                <div class="company-info">Groove Barberhouse</div>
-                <div class="company-address">Jl Soekarno-Hatta, Kec. Mandiangin Koto Selayan, Kota Bukittinggi, Sumatera
-                    Barat
-                </div>
-            </div>
+        <img src="../images/logo.png" alt="Logo Perusahaan" class="logo">
+        <div class="company-info">Groove Baberhouse</div>
+        <div class="company-slogan">"Consult your Haircut
+            Sculpting Handsome Excellence Elevate Your Handsomeness Here!"</div>
+        <div class="company-address">Jalan Soekarno Hatta No 23, Mandiangin Pakan Kurai, Kecamatan Guguk Panjang, Kota
+            Bukittinggi, Sumatera Barat 26137</div>
+    </div>
+    <div class="separator"></div>
+    <div class="card">
+        <div class="company-info">
+            <h2 style="text-align: center">Data Booking Barberman </h2>
+        </div>
+        <div class="card-body">
+            <table class="table table-bordered">
+                <tr>
+                    <th>No</th>
+                    <th>Nama Pelanggan</th>
+                    <th>Service</th>
+                    <th>Tanggal</th>
+                    <th>Jam</th>
+                    <th>Status</th>
+                </tr>
+                @forelse ($bookings as $data)
+                <tr>
+                    <td>{{ $loop->iteration }}</td>
+                    <td>{{ $data->pelanggan->name }}</td>
+                    <td>{{ $data->service->nama_service }}</td>
+                    <td>{{ $data->tanggal }}</td>
+                    <td>{{ $data->jam }}</td>
+                    <td>
+                        @if ($data->status == 'Selesai')
+                        <span class="badge badge-success">
+                            {{ $data->status }}
+                        </span>
+                        @else
+                        <span class="badge badge-warning">
+                            {{ $data->status }}
+                        </span>
+                        @endif
+                    </td>
+                </tr>
+                @empty
+                <tr>
+                    <td colspan="6" class="alert alert-info">Tidak ada data booking pada periode yang diminta.</td>
+                </tr>
+                @endforelse
+            </table>
         </div>
     </div>
-
-    <div class="separator"></div>
-
-    <table>
-        <tr>
-            <th>No</th>
-            <th>Nama Pelanggan</th>
-            <th>Service</th>
-            <th>Tanggal</th>
-            <th>Jam</th>
-            <th>Status</th>
-        </tr>
-        @foreach ($bookings as $data)
-        <tr>
-            <td>{{ $loop->iteration }}</td>
-            <td>{{ $data->pelanggan -> name}}</td>
-            <td>{{ $data->service -> nama_service }}</td>
-            <td>{{ $data->tanggal }}</td>
-            <td>{{ $data->jam }}</td>
-            <td>
-                @if ($data->status == 'Selesai')
-                <span class="badge badge-success">
-                    {{ $data->status }}
-                </span>
-                @else
-                <span class="badge badge-warning">
-                    {{ $data->status }}
-                </span>
-                @endif
-            </td>
-        </tr>
-        @endforeach
-    </table>
 
     <script type="text/javascript">
         window.print();
     </script>
-
 </body>
 
 </html>

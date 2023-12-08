@@ -40,8 +40,8 @@ class AdminServiceController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
-        $validated = $request->validate([
+         // dd($request->all());
+         $validated = $request->validate([
             'nama_service' => 'required|min:4',
             'photo' => 'required',
             'deskripsi' => 'required',
@@ -66,6 +66,8 @@ class AdminServiceController extends Controller
 
         return redirect('/data-service')->with('success', 'Data berhasil di tambahkan!');
     }
+    
+
 
     /**
      * Display the specified resource.
@@ -136,7 +138,7 @@ class AdminServiceController extends Controller
     // public function destroy($id)
     public function destroy(Request $request, $id)
     {
-        if($request->oldPicture){
+        if ($request->oldPicture) {
             Storage::delete($request->oldPicture);
         }
 

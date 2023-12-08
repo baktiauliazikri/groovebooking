@@ -13,7 +13,7 @@
                     <i class="fas fa-plus"></i>
                     Tambahkan Data Booking
                 </a> --}}
-                <a href="{{ route('data-booking.create') }}" class="btn btn-primary mb-3">
+                <a href="/dashboard" class="btn btn-primary mb-3">
                     <i class="fas fa-print"></i>
                     Cetak Data Booking
                 </a>

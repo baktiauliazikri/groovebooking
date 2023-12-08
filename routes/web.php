@@ -15,8 +15,11 @@ use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\Admin\AdminPelangganController;
 use App\Http\Controllers\Admin\AdminBarbermanController;
 use App\Http\Controllers\Admin\AdminBookingController;
+use App\Http\Controllers\Admin\AdminCetakController;
+use App\Http\Controllers\Admin\AdminImageSliderController;
 use App\Http\Controllers\Barberman\BarbermanBookingController;
 use App\Http\Controllers\Barberman\BarbermanCetakController;
+use App\Http\Controllers\Barberman\BarbermanProfileController;
 use App\Http\Controllers\Pelanggan\PelangganServiceController;
 
 /*
@@ -30,11 +33,26 @@ use App\Http\Controllers\Pelanggan\PelangganServiceController;
 |
 */
 
-//Pelanggan
-Route::get('/', [PelangganLandingController::class, 'index'])->name('/');
+//Guest
+// Route::get('/', [PelangganLandingController::class, 'index'])->name('/');
+// Route::get('/detail-model/{id}', [PelangganLandingController::class, 'lihatdetail']);
+// Route::resource('detail-service', PelangganServiceController::class);
+// Route::resource('review', PelangganReviewController::class);
+// routes/web.php
 
-Route::resource('detail-service', PelangganServiceController::class);
-Route::resource('review', PelangganReviewController::class);
+// Gusset
+Route::middleware('guest')->group(function () {
+    Route::get('/', [PelangganLandingController::class, 'index'])->name('/');
+
+    Route::get('/detail-model/{id}', [PelangganLandingController::class, 'lihatdetail']);
+
+    Route::resource('detail-service', PelangganServiceController::class);
+
+    Route::resource('review', PelangganReviewController::class);
+});
+
+
+
 
 
 Route::group(['middleware' => [CekLevel::class . ':Pelanggan']], function () {
@@ -62,12 +80,18 @@ Route::group(['middleware' => ['auth']], function () {
         Route::resource('data-booking', AdminBookingController::class);
         Route::resource('data-review', AdminReviewController::class);
         Route::resource('profile', AdminProfileController::class);
+        Route::resource('image-slider', AdminImageSliderController::class);
+        Route::get('/cetak-harian', [AdminCetakController::class, 'cetakHarian'])->name('cetak.harian');
+        Route::get('/cetak-bulanan', [AdminCetakController::class, 'cetakBulanan'])->name('cetak.bulanan');
+        Route::get('/cetak-tahunan', [AdminCetakController::class, 'cetakTahunan'])->name('cetak.tahunan');
+
     });
 
     Route::group(['middleware' => [CekLevel::class . ':Barberman']], function () {
 
         Route::resource('booking-barberman', BarbermanBookingController::class);
-        // Route::get('/', '@cetakbookingbarberman', 'cetak-booking-barberman');
+        Route::resource('profile-barberman', BarbermanProfileController::class);
         Route::get('/cetak-booking-barberman', [BarbermanCetakController::class, 'cetakbookingbarberman'])->name('/cetak-booking-barberman');
+        // Route::get('/pegawai/cetak_pdf', 'PegawaiController@cetak_pdf');
     });
 });

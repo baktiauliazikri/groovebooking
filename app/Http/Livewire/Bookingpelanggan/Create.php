@@ -188,7 +188,7 @@ class Create extends Component
         $this->clearForm();
 
         $this->currentStep = 1;
-        return redirect('/')->with('success', 'Kamu Berhasil Booking!');
+        return redirect('/my-booking')->with('success', 'Kamu Berhasil Booking!');
     }
 
     public function getServiceName()

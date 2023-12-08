@@ -69,7 +69,7 @@
                                     <i class="fas fa-trash">Cancel</i>
                                 </button>
                             </form>
-                            <a href="{{ route('my-booking.index') }}" class="btn btn-primary">Kembali</a>
+                            <a href="{{ route('booking.index') }}" class="btn btn-primary">Order More</a>
                         </div>
                     </div>
                 </div>

@@ -21,7 +21,8 @@ class DashboardController extends Controller
         'pelanggan' => User::where('level', 'Pelanggan')->get(),
         'barberman' => User::where('level', 'Barberman')->get(),
         'services' => Service::all(),
-        'bookings' => Booking::all(),
+        // 'bookings' => Booking::all(),?
+        'selesai' => Booking::where('status', 'Selesai')->get(), 
         ]);
     }
 

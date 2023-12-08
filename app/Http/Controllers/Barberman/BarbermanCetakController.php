@@ -3,13 +3,13 @@
 namespace App\Http\Controllers\Barberman;
 
 use App\Http\Controllers\Controller;
-use App\Models\Booking;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
+use App\Models\Booking;
 
 class BarbermanCetakController extends Controller
 {
-    public function cetakbookingbarberman()
+    public function cetakbookingbarberman(Request $request)
     {
         $barbermanId = Auth::id();
         $bookings = Booking::where('barberman_id', $barbermanId)->latest()->get();

@@ -12,7 +12,7 @@
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
 
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">    
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
@@ -82,7 +82,12 @@
                         </li>
                         <!-- Menu Footer-->
                         <li class="user-footer">
-                            <a href="{{route('profile.index')}}" class="btn btn-default btn-flat">Profile</a>
+                            @if(Auth::user()->level == 'Admin')
+                            <a href="{{ route('profile.index') }}" class="btn btn-default btn-flat">Profile</a>
+                            @else
+                            <a href="{{ route('profile-barberman.index') }}" class="btn btn-default btn-flat">Profile</a>
+                            @endif
+
                             <a href="/logout-action" class="btn btn-default btn-flat float-right">Sign out</a>
                         </li>
                     </ul>
@@ -114,6 +119,14 @@
                             </a>
                         </li>
                         @if (Auth()->user()->level == 'Admin')
+                        <li class="nav-item">
+                            <a href="{{ route('image-slider.index') }}" class="nav-link @yield('menuImageSlider')">
+                                <i class="nav-icon fas fa-box"></i>
+                                <p>
+                                    Image Slider
+                                </p>
+                            </a>
+                        </li>
                         <li class="nav-item">
                             <a href="{{ route('data-pelanggan.index') }}" class="nav-link @yield('menuDataPelanggan')">
                                 <i class="nav-icon fas fa-box"></i>
@@ -158,7 +171,8 @@
                         @elseif(Auth()->user()->level == 'Barberman')
                         <li class="nav-item">
                             {{-- <a href="#" class="nav-link @yield('menuService')"> --}}
-                                <a href="{{ route('booking-barberman.index') }}" class="nav-link @yield('menuBookingBarberman')">
+                                <a href="{{ route('booking-barberman.index') }}"
+                                    class="nav-link @yield('menuBookingBarberman')">
                                     <i class="nav-icon fas fa-book"></i>
                                     <p>
                                         Data Booking Barberman
@@ -245,7 +259,8 @@
     <script src="{{ asset('be/dist/js/demo.js') }}"></script>
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <script src="{{ asset('be/dist/js/pages/dashboard2.js') }}"></script>
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js">
+    </script>
     <script>
         $(document).ready(function() {
             $('#example').DataTable();
